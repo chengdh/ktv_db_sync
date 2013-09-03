@@ -103,3 +103,34 @@
 	64	TotalAccountTimes			  int
 	65	YearAccountTimes			  int
   */
+
+  COPY (
+    SELECT 
+      a.id    AS	MemberID,	
+	    a.name  AS	CustomerName,
+	    a.sex   AS	Sex,
+		  a.address AS Address,
+	    0 AS	CardTypeID,
+	    a.member_card_no AS	CardNum,
+	    SUM(coalesce(b.charge_fee,0) + coalesce(b.present_charge_fee,0)) - SUM(coalesce(c.paid_fee,0)) AS Balance,			            -- 余额
+	    a.birthday AS BirthDate,
+		  a.phone AS RelationPhone,
+	    a.member_class_id AS GradeID,
+	    a.card_password AS MemberPsw,
+	    SUM(coalesce(c.points,0)) AS CardIntegral,			      -- 卡积分
+	    SUM(coalesce(c.points,0)) AS MemberAccountBalance,    -- 卡积分
+		  a.overdraft_fee AS MemberAccountOverdraft,	              -- 透支额
+		  0 AS CardToolType,			      
+		  SUM(coalesce(c.points,0)) AS TotalIntegral,	          -- 全部积分
+		  a.v_no AS CarNum,			            -- 车牌号码
+		  a.company AS CompanyName,			        -- 公司名称
+		  a.email AS Email,
+	    a.qq AS QQ	
+  FROM ktv_member a
+  LEFT OUTER JOIN ktv_member_charge b
+  ON a.id = b.member_id
+  LEFT OUTER JOIN ktv_member_consumption c
+  ON a.id = c.id
+  GROUP BY a.id
+  )
+ TO '/Users/chengdh/myproject/ktv_db_sync/export/KTV_TBL_Customer.csv' CSV HEADER;
