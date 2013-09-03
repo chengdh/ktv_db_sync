@@ -1,0 +1,40 @@
+-- 导出仓库设置信息
+-- from
+/*
+Table "public.stock_warehouse"
+    Column     |            Type             |                          Modifiers                           
+---------------+-----------------------------+--------------------------------------------------------------
+ id            | integer                     | not null default nextval('stock_warehouse_id_seq'::regclass)
+ create_uid    | integer                     | 
+ create_date   | timestamp without time zone | 
+ write_date    | timestamp without time zone | 
+ write_uid     | integer                     | 
+ lot_input_id  | integer                     | not null
+ lot_output_id | integer                     | not null
+ name          | character varying(128)      | not null
+ lot_stock_id  | integer                     | not null
+ partner_id    | integer                     | 
+ company_id    | integer                     | not null
+ */
+
+-- to
+-- BL_TBL_StorageUnit	
+-- 仓库信息
+/*
+  1	StorageUnitId		    int
+	2	DataDealState			  int
+	3	StorageName			    varchar
+	4	SetUpMan			      varchar
+	5	SetDatetime			    datetime
+	6	StorageSort			    varchar
+	7	Status			        tinyint
+	8	DataModifyState			int
+	9	CatenationID			  int
+  */
+
+  -- 导出仓库设置到csv文件
+copy (SELECT 
+  id AS MStorageUnitId	,
+  name AS StorageName
+FROM stock_warehouse)
+ TO '/Users/chengdh/myproject/ktv_db_sync/export/BL_TBL_StorageUnit.csv' CSV HEADER;

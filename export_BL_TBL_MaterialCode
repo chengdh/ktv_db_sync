@@ -1,0 +1,164 @@
+-- 导出商品数据
+-- from table
+/*
+ Table "public.product_template"
+        Column        |            Type             |                           Modifiers                           
+----------------------+-----------------------------+---------------------------------------------------------------
+ id                   | integer                     | not null default nextval('product_template_id_seq'::regclass)
+ create_uid           | integer                     | 
+ create_date          | timestamp without time zone | 
+ write_date           | timestamp without time zone | 
+ write_uid            | integer                     | 
+ warranty             | double precision            | 
+ uos_id               | integer                     | 
+ list_price           | numeric                     | 
+ description          | text                        | 
+ weight               | numeric                     | 
+ weight_net           | numeric                     | 
+ standard_price       | numeric                     | 
+ mes_type             | character varying           | 
+ uom_id               | integer                     | not null
+ description_purchase | text                        | 
+ cost_method          | character varying           | not null
+ categ_id             | integer                     | not null
+ name                 | character varying(128)      | not null
+ uos_coeff            | numeric                     | 
+ volume               | double precision            | 
+ sale_ok              | boolean                     | 
+ description_sale     | text                        | 
+ product_manager      | integer                     | 
+ company_id           | integer                     | 
+ state                | character varying           | 
+ produce_delay        | double precision            | 
+ uom_po_id            | integer                     | not null
+ rental               | boolean                     | 
+ type                 | character varying           | not null
+ loc_rack             | character varying(16)       | 
+ loc_row              | character varying(16)       | 
+ sale_delay           | double precision            | 
+
+ ----------------------product_product-------------------------------------
+
+ create_uid       | integer                     | 
+ create_date      | timestamp without time zone | 
+ write_date       | timestamp without time zone | 
+ write_uid        | integer                     | 
+ ean13            | character varying(13)       | 
+ color            | integer                     | 
+ image            | bytea                       | 
+ price_extra      | numeric                     | 
+ default_code     | character varying(64)       | 
+ name_template    | character varying(128)      | 
+ active           | boolean                     | 
+ variants         | character varying(64)       | 
+ image_medium     | bytea                       | 
+ image_small      | bytea                       | 
+ product_tmpl_id  | integer                     | not null
+ price_margin     | numeric                     | 
+ track_outgoing   | boolean                     | 
+ track_incoming   | boolean                     | 
+ valuation        | character varying           | not null
+ track_production | boolean                     | 
+ expense_pdt      | boolean                     | 
+ income_pdt       | boolean                     | 
+ is_joint         | boolean                     | 
+ available_in_pos | boolean                     | 
+ pos_categ_id     | integer                     | 
+ to_weight        | boolean                     | 
+ hr_expense_ok    | boolean                     | 
+ */
+
+-- to table
+-- BL_TBL_MaterialCode	
+/*
+  1	WineMaterialID		      int
+	2	DataDealState			      int
+	3	MaterialCode			      varchar
+	4	MaterialBarcode			    varchar
+	5	MaterialFivepenCode			varchar
+	6	MaterialSpellCode			  varchar
+	7	MaterName			          varchar
+	8	MaterialUnitCode			  varchar
+	9	MaterialUnit			      varchar
+	10	PurchasePrice			    money
+	11	HallPrice			        money
+	12	RoomPrice			        money
+	13	MemberPrice			      money
+	14	PriceA			          money
+	15	PriceB			          money
+	16	VIPPrice			        money
+	17	PromotionPrice			  money
+	18	PromotionSign			    tinyint
+	19	MaterialSortID			  int
+	20	PickUpGainSign			  tinyint
+	21	PickUpMoney			      money
+	22	MateSign			        tinyint
+	23	EditPrice			        tinyint
+	24	IsVisible			        tinyint
+	25	MaterialNameLength		int
+	26	MaterialCodeStatus		tinyint
+	27	MaterialRank			    int
+	28	MSerialNumber			    int
+	29	AreaVisLim			      tinyint
+	30	ParentUpLimit			    int
+	31	ParentLowLimit			  int
+	32	ChildUpLimit			    int
+	33	ChildLowLimit			    int
+	34	DataModifyState			  int
+	35	ReckonInLowCharge			int
+	36	CheckInvalid			    int
+	37	CatenationID			    int
+	38	IsCombineMaterial			int       是否套餐
+	39	IsParticipateStorage	int
+	40	IsControlStorage			int
+	41	ProducePrint			    int
+	42	OperatorID			      varchar
+	43	Operator			        varchar
+	44	OperateTime			      datetime
+	45	StorageAdmin			    tinyint
+	46	SellSign			        tinyint
+	47	DiscountSign			    tinyint
+	48	CustomDamage			    tinyint
+	49	Consignation_TypeDay	int
+	50	ConsigDays			      int
+	51	IsPresentWineMaster		tinyint
+	52	CodeLimitNumberPeriod	int
+	53	RoomPriceSort			    int
+	54	HeadWineMaterialID		int
+	55	CheckNum			        int
+*/
+COPY (SELECT 
+  a.id AS WineMaterialID,
+	a.default_code AS MaterialCode,
+	a.ean13 AS	MaterialBarcode,
+	b.name  AS	MaterName,
+	c1.name AS	MaterialUnitCode,
+	c1.name AS	MaterialUnit,			              
+	b.list_price AS	PurchasePrice,			          
+	b.standard_price AS HallPrice,			          
+	b.standard_price AS	RoomPrice,			          
+	b.standard_price AS	MemberPrice,			        
+	b.standard_price AS	PriceA,			            
+  b.standard_price AS	PriceB,			            
+	b.standard_price AS	VIPPrice,			          
+	b.standard_price AS	PromotionPrice,			    
+	0 AS	PromotionSign,			      
+	b.categ_id AS	MaterialSortID,			  
+	0	AS  PickUpGainSign,			    
+	0 AS	PickUpMoney,			        
+	0 AS	MateSign,			          
+	1 AS	EditPrice,			          
+	0 AS	IsVisible,			          
+	a.is_joint AS	IsCombineMaterial,			  --是否套餐
+	0 AS	IsParticipateStorage,	  
+	1 AS	IsControlStorage,			  
+	b.sale_ok AS	SellSign,			          
+	0 AS	DiscountSign,			      
+	0 AS	CustomDamage,			      
+	-1 AS	HeadWineMaterialID		  
+  FROM product_product a,product_template b,product_uom c1,product_category d
+  WHERE a.product_tmpl_id = b.id
+  AND b.categ_id = d.id
+  AND b.uom_id = c1.id
+)
+TO '/Users/chengdh/myproject/ktv_db_sync/export/BL_TBL_MaterialCode.csv' CSV HEADER;

@@ -1,0 +1,52 @@
+--导出货物分类数据
+-- from table
+-- Table "public.product_category"
+/*
+    Column    |            Type             |                           Modifiers                           
+--------------+-----------------------------+---------------------------------------------------------------
+ id           | integer                     | not null default nextval('product_category_id_seq'::regclass)
+ parent_left  | integer                     | 
+ parent_right | integer                     | 
+ create_uid   | integer                     | 
+ create_date  | timestamp without time zone | 
+ write_date   | timestamp without time zone | 
+ write_uid    | integer                     | 
+ name         | character varying(64)       | not null
+ sequence     | integer                     | 
+ parent_id    | integer                     | 
+ type         | character varying           | 
+ */
+
+-- to table
+-- BL_TBL_Material_Sort	
+------------------------------------------------------------
+/*
+  1	  MaterialSortID		            int	4	10	0		
+	2	  DataDealState			            int	4	10	0	��	-1
+	3	  MaterialSortName	            varchar	100	100	0		
+	4	  MaterialSortCode		          varchar	4	4	0		
+	5	  DiscountSign			            tinyint	1	3	0		0
+	6	  LowConsumeSign			          tinyint	1	3	0		0
+	7	  Producetype			              tinyint	1	3	0		
+	8	  SellSign			                tinyint	1	3	0		0
+	9	  MaterialSortPy			          varchar	100	100	0		
+	10	SortStatus			              tinyint	1	3	0		
+	11	CustomDamage			            tinyint	1	3	0	��	-1
+	12	DataModifyState		            int	4	10	0	��	-1
+	13	OrderWineType			            tinyint	1	3	0	��	0
+	14	ProducePrint			            int	4	10	0		0
+	15	CatenationID			            int	4	10	0	��	
+	16	IsParticipateStorage			    int	4	10	0	��	0
+	17	IsControlStorage			        int	4	10	0	��	0
+	18	EditPrice			                tinyint	1	3	0	��	0
+	19	PickUpGainSign			          tinyint	1	3	0	��	0
+	20	PickUpMoney			              money	8	19	4	��	0
+	21	SortSerialNumber			        int	4	10	0	��	
+	22	ServiceSign			              int	4	10	0	��	0
+	23	IsPresentWineMaster			      tinyint	1	3	0	��	-1
+	24	SortLimitNumberPeriod			    int	4	10	0	��	0
+	25	IsVisible			                tinyint	1	3	0		-1
+	26	HeadMaterialSortID			      int	4	10	0		0
+  */
+copy (SELECT id AS MaterialSortID,name AS MaterialSortName,parent_id AS HeadMaterialSortID FROM product_category)
+ TO '/Users/chengdh/myproject/ktv_db_sync/export/BL_TBL_Material_Sort.csv' CSV HEADER;

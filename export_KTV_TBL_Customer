@@ -1,0 +1,105 @@
+-- 导出会员信息
+-- from table
+/*
+ Table "public.ktv_member"
+     Column      |            Type             |                        Modifiers                        
+-----------------+-----------------------------+---------------------------------------------------------
+ id              | integer                     | not null default nextval('ktv_member_id_seq'::regclass)
+ create_uid      | integer                     | 
+ create_date     | timestamp without time zone | 
+ write_date      | timestamp without time zone | 
+ write_uid       | integer                     | 
+ v_no            | character varying(30)       | 
+ member_no       | character varying(30)       | not null
+ photo           | bytea                       | 
+ company         | character varying(30)       | 
+ card_password   | character varying(20)       | not null
+ sex             | character varying           | 
+ phone           | character varying(20)       | 
+ id_no           | character varying(30)       | 
+ overdraft_fee   | numeric                     | 
+ id_type         | character varying           | 
+ active          | boolean                     | 
+ member_class_id | integer                     | not null
+ valid_date      | date                        | 
+ member_card_no  | character varying(30)       | not null
+ qq              | character varying(30)       | 
+ card_fee        | numeric                     | 
+ name            | character varying(20)       | not null
+ card_state      | boolean                     | 
+ birthday        | date                        | 
+ up_card_fee     | numeric                     | 
+ address         | character varying(60)       | 
+ email           | character varying(30)       | 
+ begin_datetime  | timestamp without time zone | not null
+ */
+
+ -- to table
+-- KTV_TBL_Customer	会员信息表
+/*
+  1	MemberID	      	        int
+	2	DataDealState			        int
+	3	CatenationID			        int
+	4	CustomerID			          varchar
+	5	CustomerName			        varchar
+	6	Sex			                  varchar
+	7	PaperType			            varchar
+	8	PaperNumber			          varchar
+	9	DialNumber			          varchar
+	10	Address	                varchar
+	11	CardTypeID			        int
+	12	CardNum			            varchar
+	13	Balance			            float
+	14	CreateDate			        datetime
+	15	remark			            varchar
+	16	BirthDate			          datetime
+	17	RelationPhone		        varchar
+	18	GradeID			            int
+	19	MemberPsw			          varchar
+	20	MemberAccountTotal			money
+	21	CardIntegral			      numeric
+	22	MemberAccountID			    int
+	23	MemberAccountBalance		money
+	24	MemberAccountOverdraft	money
+	25	CardToolType			      tinyint
+	26	Status			            tinyint
+	27	TotalIntegral	积分		  numeric
+	28	CarNum			            varchar
+	29	PeriodIntegral			    numeric
+	30	SellCardStaff			      varchar
+	31	whetherDegrade			    int
+	32	NoteMemberBalanceIsAwake	tinyint
+	33	LastConsumeDate			    datetime
+	34	NoteDumbnessIsAwake			tinyint
+	35	WriteCardTime			      int
+	36	CompanyName			        varchar
+	37	DataModifyState			    int
+	38	Email			              varchar
+	39	QQ			                varchar
+	40	MSN			                varchar
+	41	AcceptMoneySign			    int
+	42	AcceptCardMoney			    money
+	43	NoteMemberCreateIsAwake	tinyint
+	44	Operator			          varchar
+	45	PresentFlag			        tinyint
+	46	AlreadyPresentNumber		int
+	47	LastPresentNumber			  int
+	48	LastPresentTime			    datetime
+	49	YearAlreadyPresentNumber int
+	50	OtherPresentFlag			  tinyint
+	51	CardUseLimitDate			  datetime
+	52	ShopNo			            varchar
+	53	WeekAlreadyPresentNumber int
+	54	MemberAccountCash			  money
+	55	MemberAccountPresent		money
+	56	ReSellCardDateTime			datetime
+	57	LunarFlag			          int
+	58	IsReceMultiSMS			    int
+	59	EnableFriendBirthBless	int
+	60	HasBirthday			        int
+	61	SpecifyBirthDate			  datetime
+	62	YearMoneySign			      int
+	63	YearMoneyDate			      datetime
+	64	TotalAccountTimes			  int
+	65	YearAccountTimes			  int
+  */
