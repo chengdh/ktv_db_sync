@@ -2,7 +2,7 @@
 -- from table
 /*
  Table "public.stock_move"
-      Column       |            Type             |                        Modifiers                        
+      Column       |            Type             |                        Modifiers
 -------------------+-----------------------------+---------------------------------------------------------
  id                | integer                     | not null default nextval('stock_move_id_seq'::regclass)
  create_uid        | integer                     | 
