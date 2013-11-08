@@ -15,12 +15,12 @@ sock = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/object")
 
 def do_import(osv_name,import_file):
   imp_fields = []
-  f = open("export/%s" % import_file, 'rb')
+  f = open("export/%s"%import_file, 'rb')
   reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
   imp_fields =  reader.next()
   f.close()
 
-  handler = open(import_file, 'rb')
+  handler = open("export/%s"%import_file, 'rb')
   binary_data = xmlrpclib.Binary(handler.read())
   handler.close()
 
