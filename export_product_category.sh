@@ -13,6 +13,6 @@ SELECT
      MaterialSortName as name ,
      'product.product_category_1' AS 'parent_id:id'
 FROM BL_TBL_Material_Sort;
-\go -f
+\go
 quit
 QRY
