@@ -18,7 +18,7 @@ SELECT
      b.MaterialUnitCode AS 'product_uom:id',
      'stock_invontory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS 'inventory:id',
      a.StorageNumber AS product_qty,
-     'stock.stock_location_stock' AS 'location_id:id'
+     'stock.ktv_stock_location_stock' AS 'location_id:id'
 FROM BL_TBL_Material_Storage a,BL_TBL_MaterialCode b
 WHERE a.WineMaterialID = b.WineMaterialID
 \go -f

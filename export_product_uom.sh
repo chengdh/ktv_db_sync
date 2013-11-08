@@ -11,7 +11,7 @@ use eVideoBill_SH
 \set bcp_rowsep=""
 \echo id,name,category_id:id,factor
 SELECT DISTINCT 
-     a.MaterialUnitCode AS id,
+     'ktv_product_uom_'+a.MaterialUnitCode AS id,
      a.MaterialUnit AS name,
      'product.product_uom_categ_unit' AS 'category_id:id',
      '1' AS factor

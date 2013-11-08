@@ -9,13 +9,11 @@ $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
-\echo id,name,parent_id:id,parent_left,parent_right
+\echo id,name,parent_id:id
 SELECT  
-     MaterialSortID AS id,
+     'ktv_product_category_' + MaterialSortID AS id,
      MaterialSortName as name ,
      'product.product_category_1' AS 'parent_id:id',
-     0 AS parent_left,
-     0 AS parent_right
 FROM BL_TBL_Material_Sort;
 \go
 quit

@@ -11,8 +11,8 @@ use eVideoBill_SH
 \set bcp_rowsep=""
 \echo id,name
 SELECT 
-  'stock_invontory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS id,
-  'stock_invontory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS name;
+  'ktv_stock_invontory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS id,
+  'ktv_stock_invontory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS name;
 \go -f
 quit
 QRY
