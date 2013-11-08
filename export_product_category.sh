@@ -11,7 +11,7 @@ use eVideoBill_SH
 \set bcp_rowsep=""
 \echo id,name,parent_id:id
 SELECT  
-     'ktv_product_category_' + MaterialSortID AS id,
+  'ktv_product_category_' + CAST(MaterialSortID AS VARCHAR(10)) AS id,
      MaterialSortName as name ,
      'product.product_category_1' AS 'parent_id:id'
 FROM BL_TBL_Material_Sort;
