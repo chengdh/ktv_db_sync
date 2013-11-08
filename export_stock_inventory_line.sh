@@ -4,10 +4,11 @@ echo ""
 aaj=`date +%F`
 out_fl=export/stock_inventory_line_$aaj.csv
 sqsh=/usr/bin/sqsh
-$sqsh -DeVideoBill_SH -S192.168.8.252 -Usa -Pvonger -mbcp -o$out_fl <<QRY
+$sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
+\echo product_id:id,product_uom:id,inventory:id,product_qty,location_id:id
 
 SELECT 
      b.WineMaterialID  AS 'product_id:id',
