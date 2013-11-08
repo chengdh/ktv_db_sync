@@ -37,6 +37,7 @@ def do_import(osv_name,import_file):
     'file_type' : 'csv'
 
   }
+  print "importing: %s" % import_file
   import_id = sock.execute(dbname, uid, pwd, 'base_import.import', 'create', imp_data)
 
   ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
