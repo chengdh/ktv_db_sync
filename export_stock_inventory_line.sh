@@ -4,6 +4,7 @@ echo ""
 aaj=`date +%F`
 out_fl=export/stock_inventory_line_$aaj.csv
 sqsh=/usr/bin/sqsh
+rm out_fl
 $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
