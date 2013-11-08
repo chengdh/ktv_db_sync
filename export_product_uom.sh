@@ -3,7 +3,7 @@ echo "导出product_uom.csv"
 echo ""
 aaj=`date +%F`
 out_fl=export/product_uom_$aaj.csv
-rm out_fl
+rm -f out_fl
 sqsh=/usr/bin/sqsh
 $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
