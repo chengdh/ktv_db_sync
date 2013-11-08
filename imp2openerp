@@ -4,8 +4,8 @@ import xmlrpclib
 import csv
 
 username = "admin"
-pwd = "newtime"
-dbname = "newtime"
+pwd = "1"
+dbname = "ktv_development"
 
 sock_common = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/common")
 
