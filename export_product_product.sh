@@ -9,11 +9,11 @@ $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
-\echo id,name,ean13,code,uom_id:id,uom_po_id:id,standard_price,list_price,description
+\echo id,name,code,uom_id:id,uom_po_id:id,standard_price,list_price,description
 SELECT 
 'ktv_product_product_' + CAST(b.WineMaterialID AS VARCHAR(20))  AS id,
 b.MaterName AS name,
-b.MaterialBarcode AS ean13,
+-- b.MaterialBarcode AS ean13,
 b.MaterialCode AS code,
 'ktv_product_uom_' + b.MaterialUnitCode AS 'uom_id:id',
 'ktv_product_uom_' + b.MaterialUnitCode AS 'uom_po_id:id',
