@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo "导出stock_inventory_line.csv"
 echo ""
 aaj=`date +%F`

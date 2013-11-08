@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+import datetime
+import xmlrpclib
+import csv
+
+username = "admin"
+pwd = "newtime"
+dbname = "newtime"
+
+sock_common = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/common")
+
+uid = sock_common.login(dbname, username, pwd)
+
+sock = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/object")
+
+def do_import(osv_name,import_file):
+  imp_fields = []
+  f = open("export/%s" % import_file, 'rb')
+  reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
+  imp_fields =  reader.next()
+  f.close()
+
+  handler = open(import_file, 'rb')
+  binary_data = xmlrpclib.Binary(handler.read())
+  handler.close()
+
+  imp_options = {
+    'headers'   : True,
+    'encoding'  : 'utf-8',
+    'quoting'   : "'",
+    'separator'  : ","
+    }
+  imp_data = {
+    'res_model' : osv_name,
+    'file'      : binary_data,
+    'file_name' : import_file,
+    'file_type' : 'csv'
+
+  }
+  import_id = sock.execute(dbname, uid, pwd, 'base_import.import', 'create', imp_data)
+
+  ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
+
+#循环导入数据
+today_str = datetime.date.today().strftime("%Y-%m-%d")
+imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
+    ['product.category',"product_category_%s.csv"%today_str],
+    ['product.product',"product_product_%s.csv"%today_str],
+    ['stock.inventory',"stock_inventory_%s.csv"%today_str],
+    ['stock.inventory_line',"stock_inventory_line_%s.csv"%today_str],
+    ]
+for imp_data in imp_arrays:
+  do_import(imp_data[0],imp_data[1])
+
