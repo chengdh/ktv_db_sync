@@ -9,11 +9,10 @@ $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
-\echo id,name,parent_id:id
+\echo id,name
 SELECT  
   'ktv_product_category_' + CAST(MaterialSortID AS VARCHAR(10)) AS id,
-     MaterialSortName as name ,
-     'product.product_category_1' AS 'parent_id:id'
+     MaterialSortName as name
 FROM BL_TBL_Material_Sort;
 \go
 quit
