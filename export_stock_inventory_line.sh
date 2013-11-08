@@ -11,7 +11,7 @@ $sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -o$out_fl <<QRY
 use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
-\echo product_id:id,product_uom:id,inventory:id,product_qty,location_id:id
+\echo product_id:id,product_uom:id,inventory_id:id,product_qty,location_id:id
 
 SELECT 
   'ktv_product_product_'+ CAST(b.WineMaterialID AS VARCHAR(20))  AS 'product_id:id',
