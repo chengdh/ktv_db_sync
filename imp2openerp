@@ -41,7 +41,6 @@ def do_import(osv_name,import_file):
   import_id = sock.execute(dbname, uid, pwd, 'base_import.import', 'create', imp_data)
 
   ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
-  print ret
 
 today_str = datetime.date.today().strftime("%Y-%m-%d")
 imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
