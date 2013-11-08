@@ -13,8 +13,8 @@ SELECT 'id','name','category_id:id','factor'
 SELECT DISTINCT 
      a.MaterialUnitCode AS id,
      a.MaterialUnit AS name,
-     'product.product_uom_categ_unit' AS 'category_id:id'
-     1 AS factor
+     'product.product_uom_categ_unit' AS 'category_id:id',
+     '1' AS factor
 FROM BL_TBL_MaterialCode a;
 \go
 quit
