@@ -11,8 +11,7 @@ sqsh=/usr/bin/sqsh
 $sqsh -D $mssql_db -S $mssql_host -U $mssql_user -P $mssql_pw -mbcp <<SQL
 use eVideoBill_SH
 \go
-IF OBJECT_ID('dbo.TMP_BL_TBL_Material_Sort', 'U') IS NOT NULL
-  DROP TABLE IF EXISTS TMP_BL_TBL_Material_Sort
+DROP TABLE IF EXISTS TMP_BL_TBL_Material_Sort
 \go
 CREATE TABLE TMP_BL_TBL_Material_Sort
 (
