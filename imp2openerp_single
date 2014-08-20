@@ -4,8 +4,8 @@ import xmlrpclib
 import csv
 
 username = "admin"
-pwd = "kf"
-dbname = "kf"
+pwd = "newtime"
+dbname = "newtime"
 
 sock_common = xmlrpclib.ServerProxy("http://www.nt999.net:8069/xmlrpc/common")
 
@@ -43,14 +43,6 @@ def do_import(osv_name,import_file):
 
   ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
 
-today_str = datetime.date.today().strftime("%Y-%m-%d")
-imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
-    ['product.category',"product_category_%s.csv"%today_str],
-    ['product.product',"product_product_%s.csv"%today_str],
-    ['stock.inventory',"stock_inventory_%s.csv"%today_str],
-    ['stock.inventory.line',"stock_inventory_line_%s.csv"%today_str],]
-
-imp_arrays = [['ir.model.access','ir.model.access.csv']]
+imp_arrays = [['resource.resource','hr.resource.csv']]
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
-

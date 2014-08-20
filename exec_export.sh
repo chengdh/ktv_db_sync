@@ -5,7 +5,7 @@ postgres_user=chengdh
 postgres_pwd=''
 postgres_server=localhost
 postgres_port=15432
-postgres_db=ktv_demo
+postgres_db=ktv_dev
 
 for file in ` ls ${work_dir}`
 do

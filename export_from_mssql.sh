@@ -6,8 +6,8 @@ mssql_user=sa
 mssql_pw=vonger
 mssql_host=192.168.8.252
 
-source ./export_product_category.sh
-source ./export_product_uom.sh
-source ./export_product_product.sh
-source ./export_stock_inventory.sh
-source ./export_stock_inventory_line.sh
+source ./mssql_export_product_category.sh
+source ./mssql_export_product_uom.sh
+source ./mssql_export_product_product.sh
+source ./mssql_export_stock_inventory.sh
+source ./mssql_export_stock_inventory_line.sh
