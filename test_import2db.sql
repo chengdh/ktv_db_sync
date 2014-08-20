@@ -8,7 +8,7 @@ GO
 CREATE TABLE TMP_BL_TBL_Material_Sort
 (
   MaterialSortID INT,
-  MaterialSortName	VARCHAR(100),
+  MaterialSortName VARCHAR(100),
   HeadMaterialSortID INT
 )
 GO
