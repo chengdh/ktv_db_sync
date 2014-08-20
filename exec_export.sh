@@ -19,6 +19,6 @@ do
   if [ -f ${file} ] && [ ${file:0:6} = "export" ]
   then
     echo "导出文件:"${file}
-    psql -h ${postgres_server} -d ${postgres_db} -p ${postgres_port} -U ${postgres_user} -W ${postgres_pwd} -f  ${file}
+    psql -h${postgres_server} -d${postgres_db} -p${postgres_port} -U${postgres_user} -W${postgres_pwd} -f${file}
   fi
 done

@@ -133,4 +133,4 @@
   ON a.id = c.id
   GROUP BY a.id
   )
- TO '/Users/chengdh/myproject/ktv_db_sync/export/KTV_TBL_Customer.csv' CSV HEADER;
+ TO './export/KTV_TBL_Customer.csv' CSV HEADER;
