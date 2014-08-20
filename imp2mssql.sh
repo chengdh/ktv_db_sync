@@ -8,7 +8,4 @@ mssql_host=192.168.8.252
 
 sqsh=/usr/bin/sqsh
 
-$sqsh -D$mssql_db -S$mssql_host -U$mssql_user -P$mssql_pw -mbcp -i test_import2db.sql
-
-
-
+$sqsh -D $mssql_db -S $mssql_host -U $mssql_user -P $mssql_pw -mbcp -i /home/openerp/ktv_db_sync/test_import2db.sqsh
