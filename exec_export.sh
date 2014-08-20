@@ -7,11 +7,12 @@ postgres_server=localhost
 postgres_port=5432
 postgres_db=newtime
 
-postgres_user=chengdh
-postgres_pwd=''
-postgres_server=localhost
-postgres_port=15432
-postgres_db=ktv_dev
+#postgres_user=chengdh
+#postgres_pwd=''
+#postgres_server=localhost
+#postgres_port=15432
+#postgres_db=ktv_dev
+
 
 for file in ` ls ${work_dir}`
 do
