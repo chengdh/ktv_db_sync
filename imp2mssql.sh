@@ -23,7 +23,7 @@ CREATE TABLE TMP_BL_TBL_Material_Storage
 \go
 BULK
 INSERT TMP_BL_TBL_Material_Storage
-FROM '.\export\BL_TBL_Material_Storage.csv'
+FROM '/home/openerp/ktv_db_sync/export/BL_TBL_Material_Storage.csv'
 WITH
 (
   FIELDTERMINATOR = ',',
