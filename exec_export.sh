@@ -1,6 +1,12 @@
 #!/bin/bash
 #批量执行导出命令
 work_dir=$(dirname $0)
+postgres_user=openerp
+postgres_pwd=openerp
+postgres_server=localhost
+postgres_port=5432
+postgres_db=newtime
+
 postgres_user=chengdh
 postgres_pwd=''
 postgres_server=localhost

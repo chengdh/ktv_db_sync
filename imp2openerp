@@ -4,14 +4,14 @@ import xmlrpclib
 import csv
 
 username = "admin"
-pwd = "kf"
-dbname = "kf"
+pwd = "1"
+dbname = "ktv_dev"
 
-sock_common = xmlrpclib.ServerProxy("http://www.nt999.net:8069/xmlrpc/common")
+sock_common = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/common")
 
 uid = sock_common.login(dbname, username, pwd)
 
-sock = xmlrpclib.ServerProxy("http://www.nt999.net:8069/xmlrpc/object")
+sock = xmlrpclib.ServerProxy("http://local:8069/xmlrpc/object")
 
 def do_import(osv_name,import_file):
   imp_fields = []
@@ -53,4 +53,3 @@ imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
 imp_arrays = [['ir.model.access','ir.model.access.csv']]
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
-
