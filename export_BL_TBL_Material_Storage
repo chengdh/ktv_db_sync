@@ -73,4 +73,4 @@
       AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 1)
     GROUP BY p.id
     )
- TO './export/BL_TBL_Material_Storage.csv' CSV HEADER;
+ TO '/home/openerp/ktv_db_sync/export/BL_TBL_Material_Storage.csv' CSV HEADER;

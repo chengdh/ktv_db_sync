@@ -37,4 +37,4 @@ copy (SELECT
   id AS MStorageUnitId	,
   name AS StorageName
 FROM stock_warehouse)
- TO './export/BL_TBL_StorageUnit.csv' CSV HEADER;
+ TO '/home/openerp/ktv_db_sync/export/BL_TBL_StorageUnit.csv' CSV HEADER;
