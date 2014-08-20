@@ -10,25 +10,15 @@ sqsh=/usr/bin/sqsh
 
 $sqsh -D $mssql_db -S $mssql_host -U $mssql_user -P $mssql_pw -mbcp <<SQL
 use eVideoBill_SH
-\GO
--- BL_TBL_Material_Sort
+\go
 DROP TABLE TMP_BL_TBL_Material_Sort
-\GO
+\go
 CREATE TABLE TMP_BL_TBL_Material_Sort
 (
   MaterialSortID INT,
   MaterialSortName VARCHAR(100),
   HeadMaterialSortID INT
 )
-\GO
-BULK
-INSERT TMP_BL_TBL_Material_Sort
-FROM '.\export\BL_TBL_Material_Sort.csv'
-WITH
-(
-  FIELDTERMINATOR = ',',
-  ROWTERMINATOR = '\n'
-)
-\GO -f
+\go
 quit
 SQL
