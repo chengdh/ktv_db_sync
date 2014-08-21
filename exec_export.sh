@@ -6,7 +6,7 @@ postgres_pwd=openerp
 postgres_server=localhost
 postgres_port=5432
 postgres_db=newtime
-set PGPASSWORD=$postgres_pwd
+export PGPASSWORD=$postgres_pwd
 
 #postgres_user=chengdh
 #postgres_pwd=''
@@ -20,6 +20,6 @@ do
   if [ -f ${file} ] && [ ${file:0:6} = "export" ]
   then
     echo "导出文件:"${file}
-    psql -h${postgres_server} -d${postgres_db} -p${postgres_port} -U${postgres_user} -f${file}
+    PGPASSWORD=$postgres_pwd psql -h${postgres_server} -d${postgres_db} -p${postgres_port} -U${postgres_user} -f${file}
   fi
 done
