@@ -27,7 +27,7 @@ FROM '//192.168.8.44/export_file/BL_TBL_Material_Storage.csv'
 WITH
 (
   FIELDTERMINATOR = ',',
-  ROWTERMINATOR = '\n'
+  ROWTERMINATOR = '\r\n'
 )
 \go
 SELECT * FROM TMP_BL_TBL_Material_Storage
