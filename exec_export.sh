@@ -6,7 +6,6 @@ postgres_pwd=openerp
 postgres_server=localhost
 postgres_port=5432
 postgres_db=newtime
-export PGPASSWORD=$postgres_pwd
 
 #postgres_user=chengdh
 #postgres_pwd=''
