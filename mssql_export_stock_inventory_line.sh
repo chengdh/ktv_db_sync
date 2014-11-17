@@ -18,9 +18,11 @@ SELECT
   'ktv_product_uom_'+b.MaterialUnitCode AS 'product_uom:id',
   'ktv_stock_inventory_' + CONVERT(VARCHAR(30),GETDATE(),12) AS 'inventory_id:id',
   a.StorageNumber AS product_qty,
-  'stock.stock_location_stock' AS 'location_id:id'
+  'stock.stock_location_for_252' AS 'location_id:id'
 FROM BL_TBL_Material_Storage a,BL_TBL_MaterialCode b
 WHERE a.WineMaterialID = b.WineMaterialID
+AND a.StorageUnitID = 1
 \go -f
 quit
 QRY
+#FIXME 从总仓库同步数据到erp,总仓库id = 1

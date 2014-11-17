@@ -5,13 +5,14 @@ import csv
 
 username = "admin"
 pwd = "1"
-dbname = "ktv_dev"
+dbname = "test_sync"
+server = "http://erp.nt999.net:8069"
 
-sock_common = xmlrpclib.ServerProxy("http://localhost:8069/xmlrpc/common")
+sock_common = xmlrpclib.ServerProxy("%s/xmlrpc/common"%server)
 
 uid = sock_common.login(dbname, username, pwd)
 
-sock = xmlrpclib.ServerProxy("http://local:8069/xmlrpc/object")
+sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
 
 def do_import(osv_name,import_file):
   imp_fields = []
@@ -50,6 +51,6 @@ imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
     ['stock.inventory',"stock_inventory_%s.csv"%today_str],
     ['stock.inventory.line',"stock_inventory_line_%s.csv"%today_str],]
 
-imp_arrays = [['ir.model.access','ir.model.access.csv']]
+#imp_arrays = [['ir.model.access','ir.model.access.csv']]
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
