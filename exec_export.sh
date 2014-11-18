@@ -5,7 +5,7 @@ postgres_user=openerp
 postgres_pwd=openerp
 postgres_server=localhost
 postgres_port=5432
-postgres_db=newtime
+postgres_db=test_sync
 
 #postgres_user=chengdh
 #postgres_pwd=''
