@@ -6,6 +6,8 @@ mssql_state=`cat export/mssql_state.csv`
 #先执行从mssql中导出数据,然后再导入到openerp
 if [$mssql_state == 0.00]
   then
+    echo "开始同步..."
     ./mssql_export_from_mssql.sh
     ./imp2openerp
+    echo "同步结束"
 fi
