@@ -1,0 +1,2 @@
+id,name,code,uom_id:id,uom_po_id:id,type,categ_id:id,standard_price,list_price,description,external_id
+product_erp_sync,erp_sync,6907992817254,ktv_product_uom_10,ktv_product_uom_10,product,ktv_product_category_12,0,0,erp_sync,-1

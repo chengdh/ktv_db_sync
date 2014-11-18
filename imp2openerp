@@ -54,3 +54,13 @@ imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
 #imp_arrays = [['ir.model.access','ir.model.access.csv']]
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
+
+#确认并处理导入的盘点单
+external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%y%m%d")
+inventory_id = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', ('name','=',external_inventory_id))
+print "inventory_id: %s" % inventory_id
+#启动工作流程
+#action_confirm
+sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', [inventory_id])
+#action_done
+sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_done', [inventory_id])

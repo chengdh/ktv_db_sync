@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+#同步完成后,更新erp_sync产品的库存为0
+
+import datetime
+import xmlrpclib
+import csv
+
+username = "admin"
+pwd = "1"
+dbname = "test_sync"
+server = "http://erp.nt999.net:8069"
+
+sock_common = xmlrpclib.ServerProxy("%s/xmlrpc/common"%server)
+
+uid = sock_common.login(dbname, username, pwd)
+
+sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
+
+
