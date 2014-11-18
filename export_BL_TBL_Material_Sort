@@ -2,7 +2,7 @@
 -- from table
 -- Table "public.product_category"
 /*
-    Column    |            Type             |                           Modifiers                           
+    Column    |            Type             |                           Modifiers
 --------------+-----------------------------+---------------------------------------------------------------
  id           | integer                     | not null default nextval('product_category_id_seq'::regclass)
  parent_left  | integer                     | 

@@ -56,9 +56,10 @@
   */
   -- todo 需要手工设置warehouse_id
   --  ERP超市总库 warehouse id = 4
+  -- StorageUnitID = 1 对应视易系统中的仓库id
   warehouse_id := 4
   COPY (SELECT 
-	    p.id AS	WineMaterialID,
+	    p.external_id AS	WineMaterialID,
 	    CAST(sum(coalesce(income.product_qty)) - sum(coalesce(outgoing.product_qty)) AS int) AS	StorageNumber,
 	    0 AS  AdvanceNumber,
 		  1 AS  StorageUnitID
