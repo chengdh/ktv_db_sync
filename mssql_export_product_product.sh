@@ -21,7 +21,7 @@ b.MaterialBarcode AS code,
 b.PriceA AS standard_price,
 b.PriceB AS list_price,
 b.MaterialCode AS description,
-b.id
+b.WineMaterialID
 FROM BL_TBL_MaterialCode b
 -- WHERE SellSign = 1 AND IsVisible = 1;
 \go -f
