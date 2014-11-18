@@ -30,7 +30,19 @@ WITH
   ROWTERMINATOR = '0x0A'
 )
 \go
-SELECT * FROM TMP_BL_TBL_Material_Storage
+UPDATE BL_TBL_Material_Storage
+  SET StorageNumber=TMP_BL_TBL_Material_Storage.StorageNumber
+FROM TMP_BL_TBL_Material_Storage
+WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID 
+AND BL_TBL_Material_Storage.StorageUnitID = 1
+AND BL_TBL_Material_Storage.WineMaterialID=232 
+\go
+UPDATE BL_TBL_Material_Storage
+  SET StorageNumber=1
+WHERE BL_TBL_Material_Storage.StorageUnitID = 1
+AND BL_TBL_Material_Storage.WineMaterialID=695
 \go
 quit
 SQL
+#id:232 中果盘
+#id:695 ERP
