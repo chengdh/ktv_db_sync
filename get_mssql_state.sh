@@ -1,4 +1,10 @@
 #!/bin/sh
+work_dir=$(dirname $0)
+mssql_db=eVideoBill_SH
+mssql_user=sa
+mssql_pw=vonger
+mssql_host=192.168.8.252
+
 
 echo "判断mssql的状态,是否需要同步"
 out_fl=export/mssql_state.csv
@@ -17,4 +23,3 @@ AND b.StorageUnitID = 1
 \go -f
 quit
 QRY
-
