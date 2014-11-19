@@ -56,13 +56,15 @@ for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
 
 external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%Y-%m-%d")
-inventory_id = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','ilike',external_inventory_id)])
-print "inventory_id: %s" % inventory_id
+data_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','ilike',external_inventory_id)])
+return_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'read', [data_ids[-1]],['res_id'])
+res_id  = return_ids[0]['res_id'] 
+print "inventory_id: %s" % return_id[0]['res_id'] 
 #start workflow
 #action_confirm
-res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [inventory_id[-1]])
+res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [res_id])
 print "button_confirm result : %s"%res
 #sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', inventory_id)
 #action_done
-res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", [inventory_id[-1]])
+res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", [res_id])
 print "button_done result : %s"%res
