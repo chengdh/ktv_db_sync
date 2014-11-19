@@ -55,12 +55,13 @@ imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
 
+#from external_id get internal id
 external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%Y-%m-%d")
 data_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','ilike',external_inventory_id)])
 return_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'read', [data_ids[-1]],['res_id'])
 res_id  = return_ids[0]['res_id'] 
 print "inventory_id: %s" % res_id 
-#start workflow
+
 #action_confirm
 res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [res_id])
 print "button_confirm result : %s"%res
