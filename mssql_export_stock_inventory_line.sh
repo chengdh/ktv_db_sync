@@ -16,7 +16,7 @@ use eVideoBill_SH
 SELECT 
   'ktv_product_product_'+ CAST(b.WineMaterialID AS VARCHAR(20))  AS 'product_id:id',
   'ktv_product_uom_'+b.MaterialUnitCode AS 'product_uom:id',
-  '$inventory_external_id' AS 'inventory_id:id';
+  'ktv_stock_inventory_' + CONVERT(VARCHAR(16),GETDATE(),126) AS 'inventory_id:id',
   a.StorageNumber AS product_qty,
   'stock.stock_location_for_252' AS 'location_id:id'
 FROM BL_TBL_Material_Storage a,BL_TBL_MaterialCode b
