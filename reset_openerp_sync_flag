@@ -17,4 +17,35 @@ uid = sock_common.login(dbname, username, pwd)
 
 sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
 
+def do_import(osv_name,import_file):
+  imp_fields = []
+  f = open(import_file, 'rb')
+  reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
+  imp_fields =  reader.next()
+  f.close()
 
+  handler = open(import_file, 'rb')
+  binary_data = xmlrpclib.Binary(handler.read())
+  handler.close()
+
+  imp_options = {
+    'headers'   : True,
+    'encoding'  : 'utf-8',
+    'quoting'   : "'",
+    'separator'  : ","
+    }
+  imp_data = {
+    'res_model' : osv_name,
+    'file'      : binary_data,
+    'file_name' : import_file,
+    'file_type' : 'csv'
+
+  }
+  print "importing: %s" % import_file
+  print imp_fields
+  import_id = sock.execute(dbname, uid, pwd, 'base_import.import', 'create', imp_data)
+
+  ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
+
+
+do_import("stock.inventory","seed/stock.inventory.reset_product_sync.csv")
