@@ -61,6 +61,8 @@ print "inventory_id: %s" % inventory_id
 #start workflow
 #action_confirm
 res = sock.exec_workflow(dbname, uid, pwd, "stock.inventory", "button_confirm", inventory_id[0])
+print "button_confirm result : %s"%res
 #sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', inventory_id)
 #action_done
-#sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_done', inventory_id)
+res = sock.exec_workflow(dbname, uid, pwd, "stock.inventory", "button_done", inventory_id[0])
+print "button_done result : %s"%res
