@@ -60,6 +60,6 @@ inventory_id = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name
 print "inventory_id: %s" % inventory_id
 #start workflow
 #action_confirm
-sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', [inventory_id])
+sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', inventory_id)
 #action_done
-sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_done', [inventory_id])
+sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_done', inventory_id)
