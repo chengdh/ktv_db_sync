@@ -1,20 +1,5 @@
 #!/bin/bash
 #批量执行导出命令
-work_dir=$(dirname $0)
-postgres_user=openerp
-postgres_pwd=openerp
-postgres_server=localhost
-postgres_port=5432
-postgres_db=test_sync
-
-#postgres_user=chengdh
-#postgres_pwd=''
-#postgres_server=localhost
-#postgres_port=15432
-#postgres_db=ktv_dev
-
-
-
 #for file in ` ls ${work_dir}`
 #do
 #  if [ -f ${file} ] && [ ${file:0:6} = "export" ]

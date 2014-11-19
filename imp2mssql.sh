@@ -37,11 +37,6 @@ WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineM
 AND BL_TBL_Material_Storage.StorageUnitID = 1
 AND BL_TBL_Material_Storage.WineMaterialID=232 
 \go
-UPDATE BL_TBL_Material_Storage
-  SET StorageNumber=1
-WHERE BL_TBL_Material_Storage.StorageUnitID = 1
-AND BL_TBL_Material_Storage.WineMaterialID=695
-\go
 quit
 SQL
 #id:232 中果盘

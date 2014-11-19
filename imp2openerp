@@ -2,6 +2,7 @@
 import datetime
 import xmlrpclib
 import csv
+from python_helper import *
 
 username = "admin"
 pwd = "1"
@@ -14,58 +15,24 @@ uid = sock_common.login(dbname, username, pwd)
 
 sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
 
-def do_import(osv_name,import_file):
-  imp_fields = []
-  f = open("export/%s"%import_file, 'rb')
-  reader = csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONE)
-  imp_fields =  reader.next()
-  f.close()
-
-  handler = open("export/%s"%import_file, 'rb')
-  binary_data = xmlrpclib.Binary(handler.read())
-  handler.close()
-
-  imp_options = {
-    'headers'   : True,
-    'encoding'  : 'utf-8',
-    'quoting'   : "'",
-    'separator'  : ","
-    }
-  imp_data = {
-    'res_model' : osv_name,
-    'file'      : binary_data,
-    'file_name' : import_file,
-    'file_type' : 'csv'
-
-  }
-  print "importing: %s" % import_file
-  print imp_fields
-  import_id = sock.execute(dbname, uid, pwd, 'base_import.import', 'create', imp_data)
-
-  ret = sock.execute(dbname, uid, pwd, 'base_import.import', 'do', import_id,imp_fields,imp_options)
-
 today_str = datetime.date.today().strftime("%Y-%m-%d")
-imp_arrays = [['product.uom',"product_uom_%s.csv"%today_str],
-    ['product.category',"product_category_%s.csv"%today_str],
-    ['product.product',"product_product_%s.csv"%today_str],
-    ['stock.inventory',"stock_inventory_%s.csv"%today_str],
-    ['stock.inventory.line',"stock_inventory_line_%s.csv"%today_str],]
+imp_arrays = [['product.uom',"export/product_uom_%s.csv"%today_str],
+    ['product.category',"export/product_category_%s.csv"%today_str],
+    ['product.product',"export/product_product_%s.csv"%today_str],
+    ['stock.inventory',"export/stock_inventory_%s.csv"%today_str],
+    ['stock.inventory.line',"export/stock_inventory_line_%s.csv"%today_str],]
 
-#imp_arrays = [['ir.model.access','ir.model.access.csv']]
 for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
 
 #from external_id get internal id
-external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%Y-%m-%d")
-data_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','ilike',external_inventory_id)])
-return_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'read', [data_ids[-1]],['res_id'])
-res_id  = return_ids[0]['res_id'] 
-print "inventory_id: %s" % res_id 
+external_inv_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%Y-%m-%d")
+inv_id = get_internal_id(sock,external_inv_id)
+print "inventory_id: %s" % inv_id
 
 #action_confirm
-res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [res_id])
+res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [inv_id])
 print "button_confirm result : %s"%res
-#sock.execute(dbname, uid, pwd, 'stock.inventory', 'action_confirm', inventory_id)
 #action_done
-res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", [res_id])
+res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", [inv_id])
 print "button_done result : %s"%res
