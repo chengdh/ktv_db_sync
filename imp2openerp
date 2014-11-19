@@ -56,7 +56,7 @@ for imp_data in imp_arrays:
   do_import(imp_data[0],imp_data[1])
 
 external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%y%m%d")
-inventory_id = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', ('name','=',external_inventory_id))
+inventory_id = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','=',external_inventory_id)])
 print "inventory_id: %s" % inventory_id
 #start workflow
 #action_confirm
