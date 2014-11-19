@@ -18,4 +18,14 @@ uid = sock_common.login(dbname, username, pwd)
 
 sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
 
-do_import(sock,"stock.inventory","seed/stock.inventory.reset_product_sync.csv")
+do_import(sock,"stock.inventory","seed/stock_inventory_reset_product_sync.csv")
+
+ids = sock.execute(dbname,username,pwd,"stock.inventory","search",[("name","ilike","ktv_stock_inventory_reset_sync_flag")])
+
+if ids:
+    #action_confirm
+    res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", ids)
+    print "button_confirm result : %s"%res
+    #action_done
+    res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", ids)
+    print "button_done result : %s"%res
