@@ -59,7 +59,7 @@ external_inventory_id = "ktv_stock_inventory_" + datetime.date.today().strftime(
 data_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'search', [('name','ilike',external_inventory_id)])
 return_ids = sock.execute(dbname, uid, pwd, 'ir.model.data', 'read', [data_ids[-1]],['res_id'])
 res_id  = return_ids[0]['res_id'] 
-print "inventory_id: %s" % return_id[0]['res_id'] 
+print "inventory_id: %s" % res_id 
 #start workflow
 #action_confirm
 res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [res_id])
