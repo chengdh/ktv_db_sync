@@ -6,6 +6,8 @@ mssql_user=sa
 mssql_pw=vonger
 mssql_host=192.168.8.252
 
+inventory_external_id="ktv_stock_inventory"`date +%s%N`
+
 source ./mssql_export_product_category.sh
 source ./mssql_export_product_uom.sh
 source ./mssql_export_product_product.sh
