@@ -16,6 +16,6 @@ if [ $openerp_state = 1 ]
     echo "开始同步..."
     ./exec_export.sh
     ./imp2mssql.sh
-    ./reset_openerp_sync_flag
+    #./reset_openerp_sync_flag
     echo "同步结束"
 fi

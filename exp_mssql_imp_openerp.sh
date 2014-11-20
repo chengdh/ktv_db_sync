@@ -14,6 +14,6 @@ if [ $mssql_state = 0.00 ]
     echo "开始同步..."
     ./mssql_export_from_mssql.sh
     ./imp2openerp
-    ./reset_mssql_sync_flag.sh
+    #./reset_mssql_sync_flag.sh
     echo "同步结束"
 fi
