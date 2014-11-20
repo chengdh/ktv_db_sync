@@ -18,7 +18,7 @@ sock = xmlrpclib.ServerProxy("%s/xmlrpc/object"%server)
 
 do_import(sock,dbname,uid,pwd,"stock.inventory","seed/stock_inventory_reset_erp_sync.csv")
 
-ids = sock.execute(dbname,username,pwd,"stock.inventory","search",[("name","ilike","ktv_stock_inventory_reset_sync_flag")])
+ids = sock.execute(dbname,uid,pwd,"stock.inventory","search",[("name","ilike","ktv_stock_inventory_reset_sync_flag")])
 
 if ids:
     #action_confirm
