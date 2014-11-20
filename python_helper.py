@@ -3,7 +3,7 @@ import datetime
 import xmlrpclib
 import csv
 
-def get_internal_id(sock,external_id):
+def get_internal_id(sock,dbname,uid,pwd,external_id):
     '''
     从外部id获取内部id
     '''
@@ -12,7 +12,7 @@ def get_internal_id(sock,external_id):
     res_id  = return_ids and return_ids[0]['res_id'] 
     return res_id
 
-def do_import(sock,osv_name,import_file):
+def do_import(sock,dbname,uid,pwd,osv_name,import_file):
     '''
     导入csv文件
     '''

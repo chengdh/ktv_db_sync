@@ -23,11 +23,11 @@ imp_arrays = [['product.uom',"export/product_uom_%s.csv"%today_str],
     ['stock.inventory.line',"export/stock_inventory_line_%s.csv"%today_str],]
 
 for imp_data in imp_arrays:
-  do_import(sock,imp_data[0],imp_data[1])
+  do_import(sock,dbname,uid,pwd,imp_data[0],imp_data[1])
 
 #from external_id get internal id
 external_inv_id = "ktv_stock_inventory_" + datetime.date.today().strftime("%Y-%m-%d")
-inv_id = get_internal_id(sock,external_inv_id)
+inv_id = get_internal_id(sock,dbname,uid,pwd,external_inv_id)
 print "inventory_id: %s" % inv_id
 
 #action_confirm
