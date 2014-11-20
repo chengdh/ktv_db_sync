@@ -59,8 +59,8 @@
   -- StorageUnitID = 1 对应视易系统中的仓库id
 COPY(
   SELECT
-    a.WineMaterialID AS     WineMaterialID, 
-    a.StorageNumber - b.StorageNumber AS StorageNumber,
+    a.WineMaterialID AS WineMaterialID,
+    CAST(a.StorageNumber - b.StorageNumber AS int) AS StorageNumber ,
     0 AS  AdvanceNumber,
     1 AS  StorageUnitID 
   FROM 
