@@ -22,8 +22,8 @@ ids = sock.execute(dbname,uid,pwd,"stock.inventory","search",[("name","ilike","k
 
 if ids:
     #action_confirm
-    res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", ids)
+    res = sock.execute(dbname, uid, pwd, "stock.inventory","action_confirm", [ids[-1]])
     print "button_confirm result : %s"%res
     #action_done
-    res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", ids)
+    res = sock.execute(dbname, uid, pwd, "stock.inventory", "action_done", [ids[-1]])
     print "button_done result : %s"%res
