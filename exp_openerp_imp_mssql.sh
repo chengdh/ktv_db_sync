@@ -10,6 +10,7 @@ export postgres_db=test_sync
 #判断是否需要执行导入操作
 ./get_openerp_state.sh
 export openerp_state=`cat export/openerp_state.csv`
+echo "openerp_state:"$openerp_state
 #先执行从mssql中导出数据,然后再导入到openerp
 if [ $openerp_state = 1 ]
   then
