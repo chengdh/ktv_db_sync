@@ -1,0 +1,2 @@
+*/1 * * * * /home/openerp/ktv_db_sync/exp_mssql_imp_openerp.sh
+*/1 * * * * /home/openerp/ktv_db_sync/exp_openerp_imp_mssql.sh
