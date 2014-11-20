@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-#同步完成后,更新erp_sync产品的库存为0
-
 import datetime
 import xmlrpclib
 import csv
