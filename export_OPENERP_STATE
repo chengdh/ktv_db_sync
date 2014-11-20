@@ -3,9 +3,9 @@
 --同步完成后,将erp_sync产品的数量设置为0
 COPY (
   SELECT
-    CAST(a.StorageNumber - b.StorageNumber AS int) AS StorageNumber ,
-  FROM 
-  (SELECT 
+    CAST(a.StorageNumber - b.StorageNumber AS int) AS StorageNumber
+  FROM
+  (SELECT
      p.external_id AS WineMaterialID,
      sum(coalesce(income.product_qty,0)) AS StorageNumber
   FROM product_product p
@@ -14,9 +14,9 @@ COPY (
       AND income.state = 'done'
       AND income.location_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
       AND income.location_dest_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
-      AND income.name_template='erp_sync'
+    WHERE p.name_template='erp_sync'
     GROUP BY p.external_id ) a,
-  (SELECT 
+  (SELECT
          p.external_id AS WineMaterialID,
         sum(coalesce(outgoing.product_qty,0))  AS StorageNumber
     FROM product_product p
@@ -25,7 +25,7 @@ COPY (
       AND outgoing.state = 'done'
       AND outgoing.location_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
       AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
-      AND outgoing.name_template='erp_sync'
+    WHERE p.name_template='erp_sync'
     GROUP BY p.external_id ) b
   WHERE a.WineMaterialID = b.WineMaterialID)
  TO '/home/openerp/ktv_db_sync/export/openerp_state.csv' CSV;
