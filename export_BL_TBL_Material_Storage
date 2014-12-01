@@ -59,12 +59,14 @@
   -- StorageUnitID = 1 对应视易系统中的仓库id
 COPY(
   SELECT
+    a.categ_id AS categ_id,
     a.WineMaterialID AS WineMaterialID,
     CAST(a.StorageNumber - b.StorageNumber AS int) AS StorageNumber ,
     0 AS  AdvanceNumber,
     1 AS  StorageUnitID 
   FROM 
   (SELECT 
+     p.categ_id AS categ_id,
      p.external_id AS WineMaterialID,
      sum(coalesce(income.product_qty,0)) AS StorageNumber
   FROM product_product p

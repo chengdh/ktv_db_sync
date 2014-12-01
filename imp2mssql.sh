@@ -15,6 +15,7 @@ DROP TABLE TMP_BL_TBL_Material_Storage
 \go
 CREATE TABLE TMP_BL_TBL_Material_Storage
 (
+  categ_id INT,
 	WineMaterialID INT,
 	StorageNumber INT,
 	AdvanceNumber INT,
@@ -35,9 +36,11 @@ UPDATE BL_TBL_Material_Storage
 FROM TMP_BL_TBL_Material_Storage
 WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID 
 AND BL_TBL_Material_Storage.StorageUnitID = 1
-AND BL_TBL_Material_Storage.WineMaterialID=232 
+AND BL_TBL_Material_Storage.categ_id in (20,8,7) 
 \go
 quit
 SQL
-#id:232 中果盘
+#categ_id:20 扣除类 
+#categ_id:7  小吃类 
+#categ_id:8  果盘类 
 #id:695 ERP
