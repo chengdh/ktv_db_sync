@@ -37,7 +37,7 @@ UPDATE BL_TBL_Material_Storage
 FROM TMP_BL_TBL_Material_Storage
 WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID 
 AND BL_TBL_Material_Storage.StorageUnitID = 1
-AND BL_TBL_Material_Storage.categ_id in (20,8,7) 
+AND TMP_BL_TBL_Material_Storage.categ_id in (20,8,7) 
 \go
 quit
 SQL
