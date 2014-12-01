@@ -12,8 +12,8 @@ COPY (
     LEFT OUTER JOIN stock_move AS income
       ON p.id = income.product_id
       AND income.state = 'done'
-      AND income.location_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
-      AND income.location_dest_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
+      AND income.location_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=14)
+      AND income.location_dest_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=14)
     WHERE p.name_template='erp_sync'
     GROUP BY p.external_id ) a,
   (SELECT
@@ -23,8 +23,8 @@ COPY (
     LEFT OUTER JOIN stock_move AS outgoing
       ON p.id = outgoing.product_id
       AND outgoing.state = 'done'
-      AND outgoing.location_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
-      AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
+      AND outgoing.location_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 14)
+      AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 14)
     WHERE p.name_template='erp_sync'
     GROUP BY p.external_id ) b
   WHERE a.WineMaterialID = b.WineMaterialID)
