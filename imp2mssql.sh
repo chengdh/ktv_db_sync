@@ -15,6 +15,7 @@ DROP TABLE TMP_BL_TBL_Material_Storage
 \go
 CREATE TABLE TMP_BL_TBL_Material_Storage
 (
+  product_id INT,
   categ_id INT,
 	WineMaterialID INT,
 	StorageNumber INT,

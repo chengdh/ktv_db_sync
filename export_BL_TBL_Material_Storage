@@ -59,14 +59,16 @@
   -- StorageUnitID = 1 对应视易系统中的仓库id
 COPY(
   SELECT
-    a.categ_id AS categ_id,
+    a.product_id AS product_id,
+    t.categ_id AS categ_id,
     a.WineMaterialID AS WineMaterialID,
     CAST(a.StorageNumber - b.StorageNumber AS int) AS StorageNumber ,
     0 AS  AdvanceNumber,
     1 AS  StorageUnitID 
   FROM 
   (SELECT 
-     p.categ_id AS categ_id,
+     p.id AS product_id,
+     p.product_tmpl_id AS product_tmpl_id,
      p.external_id AS WineMaterialID,
      sum(coalesce(income.product_qty,0)) AS StorageNumber
   FROM product_product p
@@ -77,6 +79,8 @@ COPY(
       AND income.location_dest_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
     GROUP BY p.external_id ) a,
   (SELECT 
+         p.id AS product_id,
+         p.product_tmpl_id AS product_tmpl_id,
          p.external_id AS WineMaterialID,
         sum(coalesce(outgoing.product_qty,0))  AS StorageNumber
     FROM product_product p
@@ -85,6 +89,8 @@ COPY(
       AND outgoing.state = 'done'
       AND outgoing.location_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
       AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
-    GROUP BY p.external_id ) b
+    GROUP BY p.external_id ) b,
+    product_template t
   WHERE a.WineMaterialID = b.WineMaterialID
+  AND a.product_tmpl_id = t.id
   )TO '/home/openerp/ktv_db_sync/export/BL_TBL_Material_Storage.csv' CSV;
