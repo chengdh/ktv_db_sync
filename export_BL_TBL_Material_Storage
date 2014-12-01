@@ -77,7 +77,7 @@ COPY(
       AND income.state = 'done'
       AND income.location_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
       AND income.location_dest_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id=4)
-    GROUP BY p.external_id ) a,
+    GROUP BY p.external_id,p.id,p.product_tmpl_id ) a,
   (SELECT 
          p.id AS product_id,
          p.product_tmpl_id AS product_tmpl_id,
@@ -89,7 +89,7 @@ COPY(
       AND outgoing.state = 'done'
       AND outgoing.location_id IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
       AND outgoing.location_dest_id NOT IN (SELECT lot_stock_id FROM stock_warehouse WHERE id= 4)
-    GROUP BY p.external_id ) b,
+    GROUP BY p.external_id,p.id,p.product_tmpl_id ) b,
     product_template t
   WHERE a.WineMaterialID = b.WineMaterialID
   AND a.product_tmpl_id = t.id
