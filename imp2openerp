@@ -5,8 +5,8 @@ import csv
 from python_helper import *
 
 username = "admin"
-pwd = "1"
-dbname = "test_sync"
+pwd = "2580"
+dbname = "newtime"
 server = "http://erp.nt999.net:8069"
 
 sock_common = xmlrpclib.ServerProxy("%s/xmlrpc/common"%server)

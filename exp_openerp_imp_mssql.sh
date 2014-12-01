@@ -4,7 +4,7 @@ export postgres_user=openerp
 export postgres_pwd=openerp
 export postgres_server=localhost
 export postgres_port=5432
-export postgres_db=test_sync
+export postgres_db=newtime
 
 
 #判断是否需要执行导入操作
