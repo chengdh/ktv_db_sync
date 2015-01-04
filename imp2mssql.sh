@@ -37,10 +37,11 @@ UPDATE BL_TBL_Material_Storage
 FROM TMP_BL_TBL_Material_Storage
 WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID 
 AND BL_TBL_Material_Storage.StorageUnitID = 1
-AND TMP_BL_TBL_Material_Storage.categ_id in (20,8,7) 
 \go
 quit
 SQL
+
+#AND TMP_BL_TBL_Material_Storage.categ_id in (20,8,7) 
 #categ_id:20 扣除类 
 #categ_id:7  小吃类 
 #categ_id:8  果盘类 
