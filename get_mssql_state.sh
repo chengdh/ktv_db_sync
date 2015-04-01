@@ -9,7 +9,7 @@ use eVideoBill_SH
 \set bcp_colsep=","
 \set bcp_rowsep=""
 
-SELECT sum(b.StorageNumber)   FROM BL_TBL_MaterialCode a,BL_TBL_Material_Storage b
+SELECT ISNULL(sum(b.StorageNumber),1)   FROM BL_TBL_MaterialCode a,BL_TBL_Material_Storage b
 WHERE a.WineMaterialID  = b.WineMaterialID
 AND a.MaterName='ERP'
 AND b.StorageUnitID = 1
