@@ -25,7 +25,7 @@ CREATE TABLE TMP_BL_TBL_Material_Storage
 \go
 BULK
 INSERT TMP_BL_TBL_Material_Storage
-FROM '//192.168.8.44/export_file/BL_TBL_Material_Storage.csv'
+FROM '//192.168.8.44/export_file_205/BL_TBL_Material_Storage.csv'
 WITH
 (
   FIELDTERMINATOR = ',',

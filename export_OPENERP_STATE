@@ -28,4 +28,4 @@ COPY (
     WHERE p.name_template='erp_sync'
     GROUP BY p.external_id ) b
   WHERE a.WineMaterialID = b.WineMaterialID)
- TO '/home/openerp/ktv_db_sync/export/openerp_state.csv' CSV;
+ TO '/home/openerp/ktv_db_sync_205/export/openerp_state.csv' CSV;

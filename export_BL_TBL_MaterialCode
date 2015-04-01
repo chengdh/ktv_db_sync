@@ -161,4 +161,4 @@ COPY (SELECT
   AND b.categ_id = d.id
   AND b.uom_id = c1.id
 )
-TO '/home/openerp/ktv_db_sync/export/BL_TBL_MaterialCode.csv' CSV HEADER;
+TO '/home/openerp/ktv_db_sync_205/export/BL_TBL_MaterialCode.csv' CSV HEADER;

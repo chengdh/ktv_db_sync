@@ -3,7 +3,7 @@ export work_dir=$(dirname $0)
 export mssql_db=eVideoBill_SH
 export mssql_user=sa
 export mssql_pw=vonger
-export mssql_host=192.168.8.252
+export mssql_host=192.168.8.205
 
 #判断是否需要执行导入操作
 ./get_mssql_state.sh
