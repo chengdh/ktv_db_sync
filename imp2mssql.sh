@@ -4,7 +4,7 @@ work_dir=$(dirname $0)
 mssql_db=eVideoBill_SH
 mssql_user=sa
 mssql_pw=vonger
-mssql_host=192.168.8.252
+mssql_host=192.168.8.204
 
 sqsh=/usr/bin/sqsh
 
@@ -25,7 +25,7 @@ CREATE TABLE TMP_BL_TBL_Material_Storage
 \go
 BULK
 INSERT TMP_BL_TBL_Material_Storage
-FROM '//192.168.8.44/export_file/BL_TBL_Material_Storage.csv'
+FROM '//192.168.8.44/export_file_204/BL_TBL_Material_Storage.csv'
 WITH
 (
   FIELDTERMINATOR = ',',
@@ -35,7 +35,7 @@ WITH
 UPDATE BL_TBL_Material_Storage
   SET StorageNumber=TMP_BL_TBL_Material_Storage.StorageNumber
 FROM TMP_BL_TBL_Material_Storage
-WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID 
+WHERE BL_TBL_Material_Storage.WineMaterialID = TMP_BL_TBL_Material_Storage.WineMaterialID
 AND BL_TBL_Material_Storage.StorageUnitID = 1
 \go
 quit

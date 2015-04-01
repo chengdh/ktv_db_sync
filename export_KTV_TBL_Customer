@@ -133,4 +133,4 @@
   ON a.id = c.id
   GROUP BY a.id
   )
- TO '/home/openerp/ktv_db_sync/export/KTV_TBL_Customer.csv' CSV HEADER;
+ TO '/home/openerp/ktv_db_sync_204/export/KTV_TBL_Customer.csv' CSV HEADER;

@@ -49,4 +49,4 @@
 	26	HeadMaterialSortID			      int	4	10	0		0
   */
 copy (SELECT id AS MaterialSortID,name AS MaterialSortName,parent_id AS HeadMaterialSortID FROM product_category)
- TO '/home/openerp/ktv_db_sync/export/BL_TBL_Material_Sort.csv' CSV HEADER;
+ TO '/home/openerp/ktv_db_sync_204/export/BL_TBL_Material_Sort.csv' CSV HEADER;

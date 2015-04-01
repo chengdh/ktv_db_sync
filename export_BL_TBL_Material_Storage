@@ -93,4 +93,4 @@ COPY(
     product_template t
   WHERE a.WineMaterialID = b.WineMaterialID
   AND a.product_tmpl_id = t.id
-  )TO '/home/openerp/ktv_db_sync/export/BL_TBL_Material_Storage.csv' CSV;
+  )TO '/home/openerp/ktv_db_sync_204/export/BL_TBL_Material_Storage.csv' CSV;
