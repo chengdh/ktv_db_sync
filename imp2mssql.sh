@@ -4,7 +4,7 @@ work_dir=$(dirname $0)
 mssql_db=eVideoBill_SH
 mssql_user=sa
 mssql_pw=vonger
-mssql_host=192.168.8.252
+mssql_host=kj.nt999.net
 
 sqsh=/usr/bin/sqsh
 
